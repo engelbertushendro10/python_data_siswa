@@ -17,11 +17,15 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from data_siswa import settings
+from data_siswa_app import HodViews
 from data_siswa_app import views
 
 urlpatterns = [
     path('demo', views.showDemoPage),
     path('admin/', admin.site.urls),
     path('', views.showLoginPage),
-    path('dologin',views.dologin),
+    path('getUserDetail', views.GetUserDetails),
+    path('logout_user', views.logout_user),
+    path('doLogin',views.doLogin,name="do_login"),
+    path('admin_home',HodViews.admin_home),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

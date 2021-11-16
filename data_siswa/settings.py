@@ -133,3 +133,4 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 AUTH_USER_MODEL = "data_siswa_app.CustemUser"
+AUTHENTICATION_BACKENDS=['data_siswa_app.EmailBackEnd.EmailBackEnd']
