@@ -126,24 +126,24 @@ class NotificationStaff(models.Model):
     update_at=models.DateTimeField(auto_now_add=True)
     objects=models.Manager()
 
-@receiver(post_save, sender=CustemUser)
-def create_user_profile(sender, instance, created,**kwargs):
+@receiver(post_save,sender=CustemUser)
+def create_user_profile(sender,instance,created,**kwargs):
     if created:
         if instance.user_type==1:
             AdminHOD.objects.create(admin=instance)
         if instance.user_type==2:
-            Staff.objects.create(admin=instance)
+            Staff.objects.create(admin=instance,address="")
         if instance.user_type==3:
-            Students.objects.create(admin=instance)
+            Students.objects.create(admin=instance,course_id=Courses.objects.get(id=1),session_start_year="2020-01-01",session_end_year="2021-01-01",address="",profile_pic="",gender="")
 
-@receiver(post_save, sender=CustemUser)
-def save_user_profile(sender, instace, **kwargs):
-    if instace.user_type==1:
-        instace.AdminHOD.save()
-    if instace.user_type==2:
-        instace.Staff.save()
-    if instace.user_type==3:
-        instace.Students.save()
+@receiver(post_save,sender=CustemUser)
+def save_user_profile(sender,instance,**kwargs):
+    if instance.user_type==1:
+        instance.adminhod.save()
+    if instance.user_type==2:
+        instance.staff.save()
+    if instance.user_type==3:
+        instance.students.save()
 
     
 

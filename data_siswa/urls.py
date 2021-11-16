@@ -22,4 +22,6 @@ from data_siswa_app import views
 urlpatterns = [
     path('demo', views.showDemoPage),
     path('admin/', admin.site.urls),
+    path('', views.showLoginPage),
+    path('dologin',views.dologin),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
